@@ -24,6 +24,12 @@ class Transfer
     sender.valid? && receiver.valid?
   end
 
+
+    # #execute_transaction
+    #  can execute a successful transaction between two accounts
+    #  each transfer can only happen once (FAILED - 1)  !!!
+    #  rejects a transfer if the sender does not have enough funds (does not have a valid account) (FAILED - 2)  !!!
+
   def execute_transaction
     if valid?
       @sender.balance -= @amount
@@ -36,10 +42,9 @@ class Transfer
     end
   end
 
-  # #execute_transaction
-  #  can execute a successful transaction between two accounts
-  #  each transfer can only happen once (FAILED - 1)
-  #  rejects a transfer if the sender does not have enough funds (does not have a valid account) (FAILED - 2)
+  # #reverse_transfer
+  #    can reverse a transfer between two accounts
+  #    it can only reverse executed transfers
 
   def reverse_transfer
     if @status == 'complete'
